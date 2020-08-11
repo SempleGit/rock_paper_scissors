@@ -1,0 +1,79 @@
+<script>
+    function computerPlay() {
+        let choice = ["rock", "paper", "scissors"];
+        return choice[Math.floor(Math.random() * choice.length)];
+    }
+
+    function playRound(playerSelection, computerSelection = computerPlay()) {
+        let result
+        switch (playerSelection) {
+            case "r":
+                result = playRock(computerSelection);
+                break;
+            case "p":
+                result = playPaper(computerSelection);
+                break;
+            case "s":
+                result = playScissors(computerSelection);
+                break;
+        }
+        return result;
+    }
+
+    function playRock(computerSelection) {
+        switch (computerSelection) {
+            case "rock":
+                return "Draw!";
+            case "paper":
+                return "You Lose! Paper beats Rock";
+            case "scissors":
+                return "You Win! Rock crushes Scissors";
+        }
+    }
+
+    function playPaper(computerSelection) {
+        switch (computerSelection) {
+            case "rock":
+                return "You Win! Paper beats Rock";
+            case "paper":
+                return "Draw!";
+            case "scissors":
+                return "You Lose! Scissors cut Paper";
+        }
+    }
+
+    function playScissors(computerSelection) {
+        switch (computerSelection) {
+            case "rock":
+                return "You Lose! Rock crushes Scissors";
+            case "paper":
+                return "You Win! Scissors cut Paper";
+            case "scissors":
+                return "Draw!";
+        }
+    }
+
+    function game() {
+        let playerScore = 0;
+        let cpuScore = 0;
+        let result;        
+        for (let i = 0; i < 5; i++) {
+
+            let playerSelection = prompt("Make your move").toLowerCase().slice(0,1);
+            result = playRound(playerSelection);
+
+            if (result.charAt(4) == 'W') {
+                playerScore++;
+            } else if (result.charAt(4) == 'L') {
+                cpuScore++;
+            }
+
+            console.log(result);
+        }
+        console.log(`Player: ${playerScore} CPU: ${cpuScore}`);
+    }
+
+    game();
+
+
+</script>

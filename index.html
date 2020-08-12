@@ -1,11 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Rock Paper Scissors</title>
+        <link rel="stylesheet" href="assets/stylesheets/style.css">
+    </head>
+
+    <body>
+
 <script>
+    let playerScore = 0;
+    let cpuScore = 0;
+    let round = 0;
+    let numberOfRounds = 5;
+    let sect;
+    let resultP; 
+
     function computerPlay() {
         let choice = ["rock", "paper", "scissors"];
         return choice[Math.floor(Math.random() * choice.length)];
     }
 
+    function finishGame() {
+        
+        if (round >= numberOfRounds) {
+            
+            let winner = playerScore > cpuScore ? "You Win!" : cpuScore > playerScore ? "You Lose!" : "Draw";
+            resultP.textContent = `Final Result: ${winner}\nPlayer: ${playerScore} CPU: ${cpuScore}`
+            resetButtons();
+        }
+
+    }
+
+    function resetButtons() {
+        playerScore = 0;
+        cpuScore = 0;
+        round = 0;
+        sect.innerHTML = '<button onclick=game() type="submit">Play Again</button>';
+    }
+
     function playRound(playerSelection, computerSelection = computerPlay()) {
         let result
+        round++;
         switch (playerSelection) {
             case "r":
                 result = playRock(computerSelection);
@@ -17,7 +53,8 @@
                 result = playScissors(computerSelection);
                 break;
         }
-        return result;
+        resultP.textContent = result;
+        finishGame();
     }
 
     function playRock(computerSelection) {
@@ -25,8 +62,10 @@
             case "rock":
                 return "Draw!";
             case "paper":
+                cpuScore++;
                 return "You Lose! Paper beats Rock";
             case "scissors":
+                playerScore++;
                 return "You Win! Rock crushes Scissors";
         }
     }
@@ -34,10 +73,12 @@
     function playPaper(computerSelection) {
         switch (computerSelection) {
             case "rock":
+                playerScore++;
                 return "You Win! Paper beats Rock";
             case "paper":
                 return "Draw!";
             case "scissors":
+                cpuScore++;
                 return "You Lose! Scissors cut Paper";
         }
     }
@@ -45,8 +86,10 @@
     function playScissors(computerSelection) {
         switch (computerSelection) {
             case "rock":
+                cpuScore++;
                 return "You Lose! Rock crushes Scissors";
             case "paper":
+                playerScore++;
                 return "You Win! Scissors cut Paper";
             case "scissors":
                 return "Draw!";
@@ -54,26 +97,20 @@
     }
 
     function game() {
-        let playerScore = 0;
-        let cpuScore = 0;
-        let result;        
-        for (let i = 0; i < 5; i++) {
-
-            let playerSelection = prompt("Make your move").toLowerCase().slice(0,1);
-            result = playRound(playerSelection);
-
-            if (result.charAt(4) == 'W') {
-                playerScore++;
-            } else if (result.charAt(4) == 'L') {
-                cpuScore++;
-            }
-
-            console.log(result);
-        }
-        console.log(`Player: ${playerScore} CPU: ${cpuScore}`);
+        sect = document.querySelector('#gameButtons');
+        resultP = document.querySelector('#results');
+        
+        resultP.textContent = 'Choose your weapon';
+        sect.innerHTML = '<button id="rock" onclick=playRound(\'r\') type="submit">Rock</button>';
+        sect.innerHTML += '<button id="paper" onclick=playRound(\'p\') type="submit">Paper</button>';
+        sect.innerHTML += '<button id="scissors" onclick=playRound(\'s\') type="submit">Scissors</button>';
     }
-
-    game();
-
-
+ 
 </script>
+
+    <h1>Rock Paper Scissors!</h1>
+    <p id="results"></p>
+    <section id="gameButtons">
+        <button id="play" onclick=game() type="submit">Play Game</button>
+    </section>
+    </body>

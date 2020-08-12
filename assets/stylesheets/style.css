@@ -1,0 +1,32 @@
+
+h1 {
+    background-color: blueviolet;
+    text-align: center;
+    border-color: black;
+    border-style: outset;
+    padding: 5px 10px 5px 10px;
+    margin: 0px;
+}
+
+#gameButtons {
+    display: flex;
+    justify-content: flex-start;
+}
+
+button {
+    padding: 10px 30px 10px 30px;
+    margin: 10px 10px 10px 10px;
+    font-size: 16px;
+    border-style: ridge;
+    border-radius: 5px;
+}
+
+#results {
+    text-align: center;
+    background-color: aqua;
+    padding: 10px;
+    margin: -5px 0px 5px 0px;
+    font-size: 20px;
+    border-color: black;
+    border-style: outset;
+}

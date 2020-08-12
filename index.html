@@ -100,7 +100,7 @@
         sect = document.querySelector('#gameButtons');
         resultP = document.querySelector('#results');
         
-        resultP.textContent = 'Choose your weapon';
+        resultP.textContent = 'Choose your weapon!';
         sect.innerHTML = '<button id="rock" onclick=playRound(\'r\') type="submit">Rock</button>';
         sect.innerHTML += '<button id="paper" onclick=playRound(\'p\') type="submit">Paper</button>';
         sect.innerHTML += '<button id="scissors" onclick=playRound(\'s\') type="submit">Scissors</button>';
@@ -109,7 +109,7 @@
 </script>
 
     <h1>Rock Paper Scissors!</h1>
-    <p id="results"></p>
+    <p id="results">Want to play?</p>
     <section id="gameButtons">
         <button id="play" onclick=game() type="submit">Play Game</button>
     </section>

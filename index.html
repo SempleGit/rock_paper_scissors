@@ -25,8 +25,8 @@
         
         if (round >= numberOfRounds) {
             
-            let winner = playerScore > cpuScore ? "You Win!" : cpuScore > playerScore ? "You Lose!" : "Draw";
-            resultP.textContent = `Final Result: ${winner}\nPlayer: ${playerScore} CPU: ${cpuScore}`
+            let winner = playerScore > cpuScore ? "You Win!" : cpuScore > playerScore ? "You Lose!" : "Draw!";
+            resultP.textContent = `${winner} Player: ${playerScore} CPU: ${cpuScore}`
             resetButtons();
         }
 

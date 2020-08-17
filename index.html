@@ -7,8 +7,10 @@
     <h1>Rock Paper Scissors!</h1>
     <p id="results">Want to play?</p>
     <section id="gameButtons">
-        <button id="play" onclick=game() type="submit">Play Game</button>
+        <button id="play" data-action="game" type="submit">Play Game</button>
     </section>
+    <div id="scoreboard">
+    </div>
     </body>
     <link rel="stylesheet" href="assets/stylesheets/style.css">
 </head>
@@ -22,6 +24,30 @@ let round = 0;
 let numberOfRounds = 5;
 const sect = document.querySelector('#gameButtons');
 const resultP = document.querySelector('#results');
+const scoreboard = document.querySelector("#scoreboard");
+
+sect.addEventListener("click", getEvent);
+sect.addEventListener("transitionend", test);
+
+function test(e) {
+    console.log(e.target);
+}
+
+function getEvent(e) {
+    const action = e.target.getAttribute("data-action");
+    const play = e.target.textContent.substr(0,1).toLowerCase();
+    
+    switch (action) {
+        case "playRound":
+            playRound(play);
+            break;
+        case "game":
+            game();
+            break;
+
+    }
+
+}
 
 function computerPlay() {
     let choice = ["rock", "paper", "scissors"];
@@ -43,11 +69,24 @@ function resetButtons() {
     playerScore = 0;
     cpuScore = 0;
     round = 0;
-    sect.innerHTML = '<button onclick=game() type="submit">Play Again</button>';
+
+    const btn = document.createElement("button");
+
+    btn.textContent = "Play Again";
+    btn.setAttribute("data-action", "game");
+    btn.addEventListener("click", game);
+
+    while (sect.firstChild) {
+        sect.removeChild(sect.firstChild);
+    };
+
+    sect.appendChild(btn);
+
 }
 
 function playRound(playerSelection, computerSelection = computerPlay()) {
     let result
+
     round++;
     switch (playerSelection) {
         case "r":
@@ -61,6 +100,7 @@ function playRound(playerSelection, computerSelection = computerPlay()) {
             break;
     }
     resultP.textContent = result;
+    updateScoreboard();
     finishGame();
 }
 
@@ -103,13 +143,45 @@ function playScissors(computerSelection) {
     }
 }
 
+function updateScoreboard() {
+    scoreboard.removeChild(scoreboard.firstChild);
+    const score = document.createElement("p");
+    score.textContent = `Player: ${playerScore} CPU: ${cpuScore}`;
+    scoreboard.appendChild(score);
+
+}
+
 function game() {
 
     resultP.textContent = 'Choose your weapon!';
-    sect.innerHTML = '<button id="rock" onclick=playRound(\'r\') type="submit">Rock</button>';
-    sect.innerHTML += '<button id="paper" onclick=playRound(\'p\') type="submit">Paper</button>';
-    sect.innerHTML += '<button id="scissors" onclick=playRound(\'s\') type="submit">Scissors</button>';
+    const rock = document.createElement("button");
+    const paper = document.createElement("button");
+    const scissors = document.createElement("button");
+
+    rock.textContent = "Rock";
+    paper.textContent = "Paper";
+    scissors.textContent = "Scissors";
+
+    // rock.addEventListener("click", function(e) {
+    //     if (e.target.textContent === "Rock") {
+    //         console.log("rock");
+    //     }
+    //     console.log(e.target);
+    // })
+
+   // rock.setAttribute("onclick", "playRound('r')");
+    rock.setAttribute("data-action", "playRound");
+    paper.setAttribute("data-action", "playRound");
+    scissors.setAttribute("data-action", "playRound");    
+
+    updateScoreboard();
+    sect.removeChild(sect.firstElementChild)
+    sect.appendChild(rock);
+    sect.appendChild(paper);
+    sect.appendChild(scissors);
 }
 
 </script>
+</body>
+
 </html>

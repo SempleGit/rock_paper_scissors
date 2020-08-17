@@ -58,7 +58,7 @@ function finishGame() {
     if (round >= numberOfRounds) {
         
         let winner = playerScore > cpuScore ? "You Win!" : cpuScore > playerScore ? "You Lose!" : "Draw!";
-        resultP.textContent = `${winner} Player: ${playerScore} CPU: ${cpuScore}`
+        resultP.textContent = `${winner}`
         resetButtons();
     }
 

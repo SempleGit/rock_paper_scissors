@@ -74,7 +74,6 @@ function resetButtons() {
 
     btn.textContent = "Play Again";
     btn.setAttribute("data-action", "game");
-    btn.addEventListener("click", game);
 
     while (sect.firstChild) {
         sect.removeChild(sect.firstChild);
@@ -162,14 +161,6 @@ function game() {
     paper.textContent = "Paper";
     scissors.textContent = "Scissors";
 
-    // rock.addEventListener("click", function(e) {
-    //     if (e.target.textContent === "Rock") {
-    //         console.log("rock");
-    //     }
-    //     console.log(e.target);
-    // })
-
-   // rock.setAttribute("onclick", "playRound('r')");
     rock.setAttribute("data-action", "playRound");
     paper.setAttribute("data-action", "playRound");
     scissors.setAttribute("data-action", "playRound");    

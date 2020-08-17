@@ -9,8 +9,7 @@
     <section id="gameButtons">
         <button id="play" data-action="game" type="submit">Play Game</button>
     </section>
-    <div id="scoreboard">
-    </div>
+    <div id="scoreboard"></div>
     </body>
     <link rel="stylesheet" href="assets/stylesheets/style.css">
 </head>
@@ -143,7 +142,7 @@ function playScissors(computerSelection) {
 }
 
 function updateScoreboard() {
-    scoreboard.removeChild(scoreboard.firstChild);
+    if(scoreboard.firstChild) scoreboard.removeChild(scoreboard.firstChild);
     const score = document.createElement("p");
     score.textContent = `Player: ${playerScore} CPU: ${cpuScore}`;
     scoreboard.appendChild(score);

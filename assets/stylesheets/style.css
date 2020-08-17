@@ -37,3 +37,15 @@ button {
     border-color: black;
     border-style: outset;
 }
+
+.score {
+    text-align: center;
+    background-color: green;
+    height: 50px;
+    vertical-align: middle;
+}
+
+#scoreboard {
+    border-color: black;
+    border-style: solid;
+}

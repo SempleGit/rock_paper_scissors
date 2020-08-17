@@ -144,6 +144,7 @@ function playScissors(computerSelection) {
 function updateScoreboard() {
     if(scoreboard.firstChild) scoreboard.removeChild(scoreboard.firstChild);
     const score = document.createElement("p");
+    score.classList.add("score");
     score.textContent = `Player: ${playerScore} CPU: ${cpuScore}`;
     scoreboard.appendChild(score);
 

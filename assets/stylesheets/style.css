@@ -40,12 +40,20 @@ button {
 
 .score {
     text-align: center;
-    background-color: green;
-    height: 50px;
-    vertical-align: middle;
+    background-color: darkred;
+    height: 80px;
+    line-height: 40px;
+    margin: 10px;
+    font-size: 20px;
+    color: goldenrod;
+    white-space: pre-wrap;
 }
-
 #scoreboard {
+    display: block;
     border-color: black;
     border-style: solid;
+    background-color: goldenrod;
+    padding: 0px;
+    margin: 0px auto;
+    width: 25%;
 }

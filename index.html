@@ -145,7 +145,7 @@ function updateScoreboard() {
     if(scoreboard.firstChild) scoreboard.removeChild(scoreboard.firstChild);
     const score = document.createElement("p");
     score.classList.add("score");
-    score.textContent = `Player: ${playerScore} CPU: ${cpuScore}`;
+    score.textContent = `Player: ${playerScore}\nCPU: ${cpuScore}`;
     scoreboard.appendChild(score);
 
 }
